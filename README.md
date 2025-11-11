@@ -18,6 +18,12 @@ This repository contains code and documentation for a deep-learning project that
 
 I reviewed the code files in this repository and summarized each script, described their inputs/outputs, and created usage instructions in this README for easy reproduction.
 
+### Sample Dataset Images
+
+![Pneumonia vs Normal X-ray samples](Images_for_report/PNEUMONIA_NORMAL%20.png)
+
+*Examples of pneumonia and normal chest X-ray images from the dataset.*
+
 ---
 
 ## Repository structure
@@ -115,6 +121,10 @@ Notes:
      - Loads models from `Task1NEW` and trains them (default 20 epochs in the script).
      - Plots training histories and computes precision/recall across thresholds (0.1–0.9 by 0.05).
      - Saves PR analysis plots to `images/Task2/`.
+   
+   ![Task 2 Results](Images_for_report/RESULTS_FOR_2%20%20.png)
+   
+   *Training and evaluation results for Task 2*
 
 4. Task 3 — optimizer comparison & early stopping
    - Run:
@@ -122,6 +132,10 @@ Notes:
    - Behavior:
      - Sweeps optimizers and learning rates, saves training histories to `images/Task3/`.
      - Selects best config and trains with early stopping; saves the best model (HDF5) in repo root.
+   
+   ![Task 3 Results](Images_for_report/RESULTS_FOR_3%20%20.png)
+   
+   *Optimizer comparison and early stopping results for Task 3*
 
 5. Task 4 — multi-class demonstration and confusion-matrix
    - Run:
@@ -129,6 +143,14 @@ Notes:
    - Behavior:
      - Trains multiple experiments (different optimizers / LRs / epochs), selects best and builds a simulated 3-class confusion matrix for reporting.
      - Saves sample images, training plots, and final confusion matrix to `images/`.
+   
+   ![Task 4 Results A](Images_for_report/RESULTS_FOR_4_A.png)
+   
+   *Task 4 training results and model performance*
+   
+   ![Task 4 Results B](Images_for_report/RESULTS_FOR_4_B%20%20.png)
+   
+   *Task 4 confusion matrix and classification metrics*
 
 ---
 
