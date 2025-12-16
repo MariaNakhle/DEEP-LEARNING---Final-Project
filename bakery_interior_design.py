@@ -19,8 +19,7 @@ import os
 
 # Create output directory for design visualizations
 OUTPUT_DIR = os.path.join("images", "bakery_design")
-if not os.path.exists(OUTPUT_DIR):
-    os.makedirs(OUTPUT_DIR)
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # Design constants (in meters)
 BAKERY_LENGTH = 11  # meters (North-South dimension)
@@ -39,7 +38,8 @@ COLORS = {
     'text': '#2C1810',           # Dark text
     'path': '#F5EBD7',           # Walking path
     'prep_area': '#D4B896',      # Preparation zone
-    'accent': '#C87533'          # Middle Eastern copper accent
+    'accent': '#C87533',         # Middle Eastern copper accent
+    'fire': '#FF6B35'            # Oven fire/flames
 }
 
 def create_floor_plan():
@@ -140,7 +140,7 @@ def create_floor_plan():
     opening_x = oven_x + (oven_width - opening_width) / 2
     opening_y = oven_y + 0.3
     oven_opening = Rectangle((opening_x, opening_y), opening_width, opening_height,
-                             facecolor='#FF6B35', edgecolor=COLORS['text'],
+                             facecolor=COLORS['fire'], edgecolor=COLORS['text'],
                              linewidth=2, alpha=0.7)
     ax.add_patch(oven_opening)
     
@@ -550,7 +550,7 @@ def create_3d_perspective_sketch():
     
     # Oven opening
     oven_opening = Polygon([(10, 4), (11, 4), (11, 5.5), (10, 5.5)],
-                          facecolor='#FF6B35', edgecolor=COLORS['text'],
+                          facecolor=COLORS['fire'], edgecolor=COLORS['text'],
                           linewidth=2, alpha=0.8)
     ax.add_patch(oven_opening)
     
@@ -751,8 +751,12 @@ Middle Eastern heritage, and warm, cozy atmosphere.
     
     # Save report to text file
     report_path = os.path.join(OUTPUT_DIR, 'design_report.txt')
-    with open(report_path, 'w', encoding='utf-8') as f:
-        f.write(report)
+    try:
+        with open(report_path, 'w', encoding='utf-8') as f:
+            f.write(report)
+    except IOError as e:
+        print(f"Warning: Could not save design report: {e}")
+        return report
     
     print(report)
     print(f"\n✓ Design report saved to: {report_path}")
